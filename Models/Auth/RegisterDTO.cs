@@ -22,7 +22,11 @@ public class RegisterDTO
     [EmailAddress(ErrorMessage = "Invalid Email Address!")]
     public string Email { get; set; } = string.Empty;
 
-    [Required]
+    [Required(ErrorMessage = "Password Not Provided!")]
     [MinLength(8, ErrorMessage = "Password should be of 8 characters!")]
     public string Password { get; set; } = string.Empty;
+    
+    [Required(ErrorMessage = "Person Current Data Not Provided!")]
+    public required PersonDataDTO PersonCurrentData { get; set; }
+    public required PersonDataDTO PersonFutureData { get; set; }
 }

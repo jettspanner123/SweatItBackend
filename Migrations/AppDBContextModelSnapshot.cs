@@ -21,7 +21,7 @@ namespace SweatItBackEnd.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("SweatitBackEnd.Models.User.User", b =>
+            modelBuilder.Entity("SweatitBackEnd.Models.User.BaseUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
@@ -44,6 +44,12 @@ namespace SweatItBackEnd.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("PersonCurrentDataId")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PersonFutureDataId")
+                        .HasColumnType("text");
+
                     b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("timestamp with time zone");
 
@@ -53,7 +59,57 @@ namespace SweatItBackEnd.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("PersonCurrentDataId");
+
+                    b.HasIndex("PersonFutureDataId");
+
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("SweatitBackEnd.Models.User.PersonData", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("BodyType")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("DailyPoints")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Gender")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Goal")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("Height")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("Level")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("Weight")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PersonData");
+                });
+
+            modelBuilder.Entity("SweatitBackEnd.Models.User.BaseUser", b =>
+                {
+                    b.HasOne("SweatitBackEnd.Models.User.PersonData", "PersonCurrentData")
+                        .WithMany()
+                        .HasForeignKey("PersonCurrentDataId");
+
+                    b.HasOne("SweatitBackEnd.Models.User.PersonData", "PersonFutureData")
+                        .WithMany()
+                        .HasForeignKey("PersonFutureDataId");
+
+                    b.Navigation("PersonCurrentData");
+
+                    b.Navigation("PersonFutureData");
                 });
 #pragma warning restore 612, 618
         }

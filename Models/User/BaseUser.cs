@@ -10,5 +10,6 @@ public class BaseUser(string id, string firstName, string? lastName, string user
     public string Password { get; set; } = password;
     public DateTime CreateAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
-
+    public PersonData? PersonCurrentData { get; set; }
+    public PersonData? PersonFutureData { get; set; }
 }

@@ -1,11 +1,11 @@
 using SweatitBackEnd.Models.Auth;
+using SweatitBackEnd.Models.User;
 
 namespace SweatitBackEnd.Modules.Auth;
 
 public interface IAuthService
 {
-
     Task<bool> HealthCheck();
-    Task<RegisterServiceResponse> Register(RegisterDTO userData);
-    Task<LoginServiceResponse> Login(LoginDTO userData);
+    Task<RegisterUserServiceResponse> Register(RegisterDTO userData);
+    Task<LoginUserServiceResponse> Login(LoginDTO userData);
 }

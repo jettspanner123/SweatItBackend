@@ -2,10 +2,11 @@ using SweatitBackEnd.Models.User;
 
 namespace SweatitBackEnd.Models.Auth;
 
-public class AuthResponse(bool status, string message, SafeUser? user, List<string>? errors)
+public class AuthResponse(bool status, string message, SafeUser? user, string? token, List<string>? errors)
 {
-    public bool Status = status;
-    public string Message = message;
-    public SafeUser? user = user;
-    public List<string>? errors = errors;
+    public bool Status { get; set; } = status;
+    public string Message { get; set; } = message;
+    public SafeUser? User { get; set; } = user;
+    public string? Token { get; set; } = token;
+    public List<string>? Errors { get; set; } = errors;
 }

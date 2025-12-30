@@ -6,8 +6,9 @@ public interface IUserService
 {
     // Get
     Task<bool> HealthCheck();
-    Task<bool> GetUserByIdAsync(string id);
-    Task<bool> GetUserByUsernameAsync(string username);
+    Task<SafeUser> GetUserByIdAsync(string id);
+    Task<SafeUser> GetUserByUsernameAsync(string username);
+    Task<List<SafeUser>> GetAllUsersAsync();
 
     // Post
     Task<UpdateUserServerResponse> PostUpdateUserByIdAsync(UpdateUserDTO userData);

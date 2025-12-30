@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SweatItBackEnd")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+91f4171ac7ebdec4ac246eb8cf108ff03ac62375")]
 [assembly: System.Reflection.AssemblyProductAttribute("SweatItBackEnd")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SweatItBackEnd")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
