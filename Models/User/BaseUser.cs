@@ -1,3 +1,6 @@
+using SweatItBackEnd.Models.Life;
+using SweatItBackEnd.Models.Workout;
+
 namespace SweatitBackEnd.Models.User;
 
 public class BaseUser(string id, string firstName, string? lastName, string username, string email, string password)
@@ -8,8 +11,14 @@ public class BaseUser(string id, string firstName, string? lastName, string user
     public string Username { get; set; } = username;
     public string Email { get; set; } = email;
     public string Password { get; set; } = password;
+    
     public DateTime CreateAt { get; set; } = DateTime.UtcNow;
     public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+    
     public PersonData? PersonCurrentData { get; set; }
     public PersonData? PersonFutureData { get; set; }
+    public List<Workout>? Workouts { get; set; } = new();
+    
+    public List<Allergy>? Allergies { get; set; }
+    public Location? Location { get; set; }
 }

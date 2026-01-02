@@ -1,10 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "yHRor4d/2lU=",
+  "dgSpecHash": "V+XoYOlaFPA=",
   "success": true,
   "projectFilePath": "/Users/uddeshyasingh/DotNetDev/SweatItBackEnd/SweatItBackEnd.csproj",
   "expectedPackageFiles": [
     "/Users/uddeshyasingh/.nuget/packages/bcrypt.net-next/4.0.3/bcrypt.net-next.4.0.3.nupkg.sha512",
+    "/Users/uddeshyasingh/.nuget/packages/google.apis/1.69.0/google.apis.1.69.0.nupkg.sha512",
+    "/Users/uddeshyasingh/.nuget/packages/google.apis.auth/1.69.0/google.apis.auth.1.69.0.nupkg.sha512",
+    "/Users/uddeshyasingh/.nuget/packages/google.apis.core/1.69.0/google.apis.core.1.69.0.nupkg.sha512",
+    "/Users/uddeshyasingh/.nuget/packages/google.genai/0.9.0/google.genai.0.9.0.nupkg.sha512",
     "/Users/uddeshyasingh/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/uddeshyasingh/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/10.0.1/microsoft.aspnetcore.authentication.jwtbearer.10.0.1.nupkg.sha512",
     "/Users/uddeshyasingh/.nuget/packages/microsoft.aspnetcore.openapi/10.0.1/microsoft.aspnetcore.openapi.10.0.1.nupkg.sha512",
@@ -46,6 +50,7 @@
     "/Users/uddeshyasingh/.nuget/packages/system.configuration.configurationmanager/9.0.0/system.configuration.configurationmanager.9.0.0.nupkg.sha512",
     "/Users/uddeshyasingh/.nuget/packages/system.formats.nrbf/9.0.0/system.formats.nrbf.9.0.0.nupkg.sha512",
     "/Users/uddeshyasingh/.nuget/packages/system.identitymodel.tokens.jwt/8.0.1/system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
+    "/Users/uddeshyasingh/.nuget/packages/system.management/7.0.2/system.management.7.0.2.nupkg.sha512",
     "/Users/uddeshyasingh/.nuget/packages/system.reflection.metadataloadcontext/7.0.0/system.reflection.metadataloadcontext.7.0.0.nupkg.sha512",
     "/Users/uddeshyasingh/.nuget/packages/system.resources.extensions/9.0.0/system.resources.extensions.9.0.0.nupkg.sha512",
     "/Users/uddeshyasingh/.nuget/packages/system.security.cryptography.pkcs/9.0.0/system.security.cryptography.pkcs.9.0.0.nupkg.sha512",

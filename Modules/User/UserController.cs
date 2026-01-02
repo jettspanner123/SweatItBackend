@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using SweatitBackEnd.Models.Base;
 using SweatitBackEnd.Models.User;
@@ -34,7 +33,7 @@ public class UserController(IUserService userService) : ControllerBase {
         }
     }
 
-    [HttpPost()]
+    [HttpPut("update")]
     public async Task<ActionResult<UpdateUserResponse>> PostUpdateUserByIdAsync([FromBody] UpdateUserDTO userData) {
         try {
             var data = await userService.PostUpdateUserByIdAsync(userData);

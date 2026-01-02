@@ -5,16 +5,16 @@ namespace SweatitBackEnd.Utils;
 
 public class HelperFunctions {
     public static SafeUser GetSafeUserFromBaseUser(BaseUser userData) {
-        return new SafeUser(
-            id: userData.Id,
-            firstName: userData.FirstName,
-            lastName: userData.LastName,
-            username: userData.Username,
-            email: userData.Email,
-            personCurrentData: GetEmptyPersonData(),
-            personFutureData: GetEmptyPersonData()
-        );
-    }
+        return new SafeUser {
+            Id = userData.Id,
+            Email = userData.Email,
+            FirstName = userData.FirstName,
+            LastName = userData.LastName,
+            Username = userData.Username,
+            PersonCurrentData = GetEmptyPersonData(),
+            PersonFutureData = GetEmptyPersonData(),
+        };
+   }
 
     public static PersonData GetEmptyPersonData() {
         return new PersonData {

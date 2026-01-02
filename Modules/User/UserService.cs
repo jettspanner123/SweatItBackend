@@ -15,9 +15,15 @@ public class UserService(AppDBContext context) : IUserService {
             .Include(user => user.PersonFutureData)
             .ToListAsync();
         var safeUsers = users
-            .Select(user => new SafeUser(id: user.Id, username: user.Username, email: user.Email,
-                firstName: user.FirstName, lastName: user.LastName, personCurrentData: user.PersonCurrentData,
-                personFutureData: user.PersonFutureData));
+            .Select(user => new SafeUser {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email,
+                Username = user.Username,
+                PersonCurrentData = user.PersonCurrentData,
+                PersonFutureData = user.PersonFutureData
+            });
         return safeUsers.ToList();
     }
 

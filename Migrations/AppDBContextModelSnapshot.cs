@@ -21,10 +21,138 @@ namespace SweatItBackEnd.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
+            modelBuilder.Entity("SweatItBackEnd.Models.Life.Location", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Location");
+                });
+
+            modelBuilder.Entity("SweatItBackEnd.Models.Workout.Exercise", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.PrimitiveCollection<int[]>("Equipments")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
+                    b.PrimitiveCollection<int[]>("Muscles")
+                        .IsRequired()
+                        .HasColumnType("integer[]");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Type")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Exercises");
+                });
+
+            modelBuilder.Entity("SweatItBackEnd.Models.Workout.ExerciseSet", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExerciseId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsWarmUp")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("MaxReps")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MinReps")
+                        .HasColumnType("integer");
+
+                    b.Property<double?>("Weight")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("WorkoutId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExerciseId");
+
+                    b.HasIndex("WorkoutId");
+
+                    b.ToTable("ExerciseSets");
+                });
+
+            modelBuilder.Entity("SweatItBackEnd.Models.Workout.Workout", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<int>("Difficulty")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("LastPerformed")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Workout", (string)null);
+                });
+
             modelBuilder.Entity("SweatitBackEnd.Models.User.BaseUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("text");
+
+                    b.PrimitiveCollection<int[]>("Allergies")
+                        .HasColumnType("integer[]");
 
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("timestamp with time zone");
@@ -38,6 +166,9 @@ namespace SweatItBackEnd.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("LastName")
+                        .HasColumnType("text");
+
+                    b.Property<string>("LocationId")
                         .HasColumnType("text");
 
                     b.Property<string>("Password")
@@ -58,6 +189,8 @@ namespace SweatItBackEnd.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
 
                     b.HasIndex("PersonCurrentDataId");
 
@@ -97,8 +230,42 @@ namespace SweatItBackEnd.Migrations
                     b.ToTable("PersonData");
                 });
 
+            modelBuilder.Entity("SweatItBackEnd.Models.Workout.ExerciseSet", b =>
+                {
+                    b.HasOne("SweatItBackEnd.Models.Workout.Exercise", "Exercise")
+                        .WithMany()
+                        .HasForeignKey("ExerciseId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("SweatItBackEnd.Models.Workout.Workout", "Workout")
+                        .WithMany("Sets")
+                        .HasForeignKey("WorkoutId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Exercise");
+
+                    b.Navigation("Workout");
+                });
+
+            modelBuilder.Entity("SweatItBackEnd.Models.Workout.Workout", b =>
+                {
+                    b.HasOne("SweatitBackEnd.Models.User.BaseUser", "User")
+                        .WithMany("Workouts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("SweatitBackEnd.Models.User.BaseUser", b =>
                 {
+                    b.HasOne("SweatItBackEnd.Models.Life.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
                     b.HasOne("SweatitBackEnd.Models.User.PersonData", "PersonCurrentData")
                         .WithMany()
                         .HasForeignKey("PersonCurrentDataId");
@@ -107,9 +274,21 @@ namespace SweatItBackEnd.Migrations
                         .WithMany()
                         .HasForeignKey("PersonFutureDataId");
 
+                    b.Navigation("Location");
+
                     b.Navigation("PersonCurrentData");
 
                     b.Navigation("PersonFutureData");
+                });
+
+            modelBuilder.Entity("SweatItBackEnd.Models.Workout.Workout", b =>
+                {
+                    b.Navigation("Sets");
+                });
+
+            modelBuilder.Entity("SweatitBackEnd.Models.User.BaseUser", b =>
+                {
+                    b.Navigation("Workouts");
                 });
 #pragma warning restore 612, 618
         }

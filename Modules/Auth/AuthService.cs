@@ -26,15 +26,15 @@ public class AuthService(AppDBContext context, JwtService jwtService) : IAuthSer
 
         var token = jwtService.GenerateJwt(user);
 
-        var responseUser = new SafeUser(
-            id: user.Id,
-            firstName: user.FirstName,
-            lastName: user.LastName,
-            username: user.Username,
-            email: user.Email,
-            personCurrentData: user.PersonCurrentData,
-            personFutureData: user.PersonFutureData
-        );
+        var responseUser = new SafeUser {
+            Id = user.Id,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Email = user.Email,
+            Username = user.Username,
+            PersonCurrentData = user.PersonCurrentData,
+            PersonFutureData = user.PersonFutureData,
+        };
         return new LoginUserServiceResponse(responseUser, $"Welcome {responseUser.Username}", token);
     }
 
@@ -69,15 +69,15 @@ public class AuthService(AppDBContext context, JwtService jwtService) : IAuthSer
 
         var token = jwtService.GenerateJwt(createdUser);
 
-        var responseUser = new SafeUser(
-            id: createdUser.Id,
-            firstName: createdUser.FirstName,
-            lastName: createdUser.LastName,
-            username: createdUser.Username,
-            email: createdUser.Email,
-            personCurrentData: createdUser.PersonCurrentData,
-            personFutureData: createdUser.PersonFutureData
-        );
+        var responseUser = new SafeUser {
+            Id = createdUser.Id,
+            FirstName = createdUser.FirstName,
+            LastName = createdUser.LastName,
+            Email = createdUser.Email,
+            Username = createdUser.Username,
+            PersonCurrentData = createdUser.PersonCurrentData,
+            PersonFutureData = createdUser.PersonFutureData
+        };
 
         context.Users.Add(createdUser);
 

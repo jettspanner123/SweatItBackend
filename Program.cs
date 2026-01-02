@@ -1,10 +1,9 @@
 using System.Text.Json.Serialization;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using SweatitBackEnd.Models.Base;
+using SweatItBackEnd.Modules.Ai;
 using SweatitBackEnd.Modules.Auth;
 using SweatitBackEnd.Modules.User;
+using SweatItBackEnd.Modules.Workout;
 using SweatitBackEnd.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,7 +16,10 @@ builder.Services.AddControllers().AddJsonOptions(options => {
 });
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAIService, AIService>();
+builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 builder.Services.AddScoped<JwtService>();
+builder.Services.AddScoped<GeminiService>();
 builder.Services.AddCors(options => {
     options.AddPolicy("AllowAll", policy => {
         policy.AllowAnyOrigin();
